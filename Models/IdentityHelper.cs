@@ -10,7 +10,7 @@ namespace SpeakingInBits.Models
     {
         public static void SetIdentityOptions(IdentityOptions options)
         {
-            // Set sign in options
+            // Set Sign In Options
             options.SignIn.RequireConfirmedAccount = false;
             options.SignIn.RequireConfirmedPhoneNumber = false;
 
@@ -20,6 +20,10 @@ namespace SpeakingInBits.Models
             options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 8;
             options.Password.RequireNonAlphanumeric = false;
+
+            // Set Lockout Options
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
+            options.Lockout.MaxFailedAccessAttempts = 5;
         }
     }
 }
