@@ -34,6 +34,7 @@ namespace SpeakingInBits
                     Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddDefaultIdentity<IdentityUser>(IdentityHelper.SetIdentityOptions)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
             services.AddControllersWithViews();
@@ -72,6 +73,15 @@ namespace SpeakingInBits
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            // Create Roles
+            IServiceScope serviceProvider = app.ApplicationServices
+                                     .GetRequiredService<IServiceProvider>()
+                                     .CreateScope();
+            
+            IdentityHelper.CreateRoles(serviceProvider.ServiceProvider
+                                     , IdentityHelper.InstructorRole
+                                     , IdentityHelper.StudentRole).Wait();
         }
     }
 }
