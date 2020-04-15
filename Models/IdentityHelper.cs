@@ -10,6 +10,9 @@ namespace SpeakingInBits.Models
 {
     public static class IdentityHelper
     {
+        // Role-based authorization in ASP.NET Core
+        // https://docs.microsoft.com/en-us/aspnet/core/security/authorization/roles?view=aspnetcore-3.1
+
         // Role Names
         public const string InstructorRole = "Instructor";
         public const string StudentRole = "Student";
